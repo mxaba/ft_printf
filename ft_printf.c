@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 08:37:01 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 11:25:49 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 11:59:11 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 11:59:16 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
 static int		ft_chooseprint(va_list ap, char c)
 {
@@ -33,7 +33,7 @@ static int		ft_chooseprint(va_list ap, char c)
 	return (0);
 }
 
-int				ft_printf(const char *format, ...)
+int				ft_printf(char const *s, ...)
 {
 	int			i;
 	int			len;
@@ -41,16 +41,16 @@ int				ft_printf(const char *format, ...)
 
 	i = 0;
 	len = 0;
-	va_start(ap, format);
-	while (format[i])
+	va_start(ap, s);
+	while (s[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (s[i] == '%')
 		{
-			len += ft_chooseprint(ap, format[i + 1]);
+			len += ft_chooseprint(ap, s[i + 1]);
 			i++;
 		}
-		else if (format[i] != '%')
-			len += ft_putchar(format[i]);
+		else if (s[i] != '%')
+			len += ft_putchar(s[i]);
 		i++;
 	}
 	va_end(ap);

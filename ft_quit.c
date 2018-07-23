@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 11:33:46 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 11:42:41 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 12:06:22 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 12:06:25 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
-void    ft_quit(int system, char *e_perso)
+void	ft_quit(int system, char *e_perso)
 {
 	if (system)
 		ft_printf(RED "%s: %s\n" RESET, strerror(system), e_perso);

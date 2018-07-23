@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 09:48:39 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/19 09:49:21 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 12:04:42 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 12:04:46 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
-int		ft_printint(int c)
+int		ft_putint(int c)
 {
 	write(1, &c, 1);
 	return (1);

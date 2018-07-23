@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 08:59:11 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 09:00:31 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 12:06:32 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 12:06:37 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
 size_t		ft_strlen(const char *str)
 {

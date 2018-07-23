@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 09:19:25 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 10:40:57 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 11:56:38 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 11:56:55 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
 void	ft_fatal(char *binary)
 {
 	if (!binary)
 		return ;
 	ft_printf_fd(2, "\033[1;31m[usage:]\033[0m %s <arg1> <arg2> <...>\n"\
-			, binary);
+				, binary);
 	exit(EXIT_SUCCESS);
 }

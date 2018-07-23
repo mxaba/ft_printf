@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 08:55:01 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 08:57:02 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 12:05:54 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 12:05:59 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include	<unistd.h>
 
-void	ft_putstr(char	const *str)
+void	ft_putstr(char const *str)
 {
 	int		i;
 

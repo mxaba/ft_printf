@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 10:48:42 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 10:00:14 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 12:01:32 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 12:01:37 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
 int		ft_printhexa_fd(int fd, va_list ap)
 {
 	char			*p;
-	unsigned		c;
+	unsigned int	c;
 
 	c = va_arg(ap, unsigned int);
 	p = ft_htoa(c);

@@ -5,35 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 10:12:04 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 09:24:01 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 11:59:28 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 11:59:38 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-static int	ft_chooseprint(int fd, va_list ap, char c)
+#include "libprt.h"
+
+static int		ft_chooseprint(int fd, va_list ap, char c)
 {
-	if (c == 'C' || c == 'c')
+	if (c == 'c')
 		return (ft_printchar_fd(fd, ap));
-	else if (c == 's' || c == 'S')
+	else if (c == 's')
 		return (ft_printstr_fd(fd, ap));
-	else if (c == 'd' || c == 'D' \
-			|| c == 'i' || c == 'I')
+	else if (c == 'd' || c == 'i')
 		return (ft_printnbr_fd(fd, ap));
-	else if (c == 'u' || c == 'U')
+	else if (c == 'u')
 		return (ft_printunsigned_fd(fd, ap));
-	else if (c == 'o' || c == 'O')
+	else if (c == 'o')
 		return (ft_printoctal_fd(fd, ap));
-	else if (c == 'x' || c == 'X')
+	else if (c == 'x')
 		return (ft_printhexa_fd(fd, ap));
-	else if (c == 'p' || c == 'P')
+	else if (c == 'p')
 		return (ft_printvoid_fd(fd, ap));
 	else if (c == '%')
 		return (ft_putchar_fd(fd, c));
 	return (0);
 }
 
-int			ft_printf_fd(int fd, const char *format, ...)
+int				ft_printf_fd(int fd, char const *s, ...)
 {
 	int			i;
 	int			len;
@@ -41,16 +41,16 @@ int			ft_printf_fd(int fd, const char *format, ...)
 
 	i = 0;
 	len = 0;
-	va_start(ap, format);
-	while (format[i])
+	va_start(ap, s);
+	while (s[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (s[i] == '%')
 		{
-			len += ft_chooseprint(fd, ap, format[i + 1]);
+			len += ft_chooseprint(fd, ap, s[i + 1]);
 			i++;
 		}
-		else if (format[i] != '%')
-			len += ft_putchar_fd(fd, format[i]);
+		else if (s[i] != '%')
+			len += ft_putchar_fd(fd, s[i]);
 		i++;
 	}
 	va_end(ap);

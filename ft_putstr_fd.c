@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 08:57:18 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 08:58:37 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 12:06:12 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 12:06:15 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include	<unistd.h>
 
 void	ft_putstr_fd(int fd, char const *str)
 {

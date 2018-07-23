@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 07:50:47 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 08:40:28 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 11:57:30 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 11:57:36 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
-static int	ft_nbrlen(int n)
+static int		ft_nbrlen(int n)
 {
 	int		i;
 	int		nb;
@@ -29,21 +29,20 @@ static int	ft_nbrlen(int n)
 	return ((n < 0) ? i + 1 : i);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int		val;
 	int		len;
-	char 	*str;
+	char	*str;
 
 	val = n;
 	len = ft_nbrlen(n);
 	str = (char *)malloc(sizeof(str) * len + 1);
 	if (str)
-	{
-		str[len + 1] = '\0';
+	{	str[len + 1] = '\0';
 		while (len--)
 		{
-			str[len] = (n  < 0) ? (n % 10) * -1 + 48 : (n % 10) + 48;
+			str[len] = (n < 0) ? (n % 10) * -1 + 48 : (n % 10) + 48;
 			n = n / 10;
 		}
 		if (val < 0)

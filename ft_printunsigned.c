@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/19 09:03:16 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 11:27:20 by mxaba            ###   ########.fr       */
+/*   Created: 2018/07/23 12:03:23 by mxaba             #+#    #+#             */
+/*   Updated: 2018/07/23 12:03:26 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libprt.h"
 
 int		ft_printunsigned(va_list ap)
 {
@@ -19,5 +19,6 @@ int		ft_printunsigned(va_list ap)
 
 	c = va_arg(ap, unsigned int);
 	p = ft_utoa(c);
+	ft_putstr(p);
 	return (ft_strlen(p));
 }
