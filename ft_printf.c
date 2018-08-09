@@ -5,54 +5,92 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mxaba <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 11:59:11 by mxaba             #+#    #+#             */
-/*   Updated: 2018/07/23 11:59:16 by mxaba            ###   ########.fr       */
+/*   Created: 2018/08/03 09:10:09 by mxaba             #+#    #+#             */
+/*   Updated: 2018/08/04 09:39:19 by mxaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libprt.h"
+#include "ft_printf.h"
 
-static int		ft_chooseprint(va_list ap, char c)
+int					ending(wchar_t **str, char **nformat, int count, va_list ap)
 {
-	if (c == 'c')
-		return (ft_printchar(ap));
-	else if (c == 's')
-		return (ft_printstr(ap));
-	else if (c == 'd' || c == 'i')
-		return (ft_printnbr(ap));
-	else if (c == 'u')
-		return (ft_printunsigned(ap));
-	else if (c == 'o')
-		return (ft_printoctal(ap));
-	else if (c == 'x')
-		return (ft_printhexa(ap));
-	else if (c == 'p')
-		return (ft_printvoid(ap));
-	else if (c == '%')
-		return (ft_putchar(c));
-	return (0);
+	free(*nformat);
+	va_end(ap);
+	return (ft_putwstr(str, count));
 }
 
-int				ft_printf(char const *s, ...)
+wchar_t				*starting_test(const char *format, va_list ap,\
+					int *i, int *count)
 {
-	int			i;
-	int			len;
-	va_list		ap;
+	int		p;
+	int		width;
+	wchar_t *arg;
+	char	*flags;
 
-	i = 0;
-	len = 0;
-	va_start(ap, s);
-	while (s[i] != '\0')
+	flags = check_same_flags(format, i, 0, 0);
+	if (flags != NULL)
 	{
-		if (s[i] == '%')
-		{
-			len += ft_chooseprint(ap, s[i + 1]);
-			i++;
-		}
-		else if (s[i] != '%')
-			len += ft_putchar(s[i]);
-		i++;
+		width = minimal_width(format, i, ap);
+		p = precision(format, i, ap);
+		arg = check_conv_flags(format, ap, i, count);
+		if (!arg && (format[*i] == 's' || format[*i] == 'S'))
+			return (ft_strdup_wchar("(null)"));
+		if (!arg || (format[*i] == 'C' && wchar_len(arg[0]) == -1))
+			return (NULL);
+		arg = applying_precision(&arg, p, format[*i]);
+		arg = applying_flags(&arg, flags, format[*i], width);
+		free(flags);
+		flags = NULL;
+		return (arg);
 	}
-	va_end(ap);
-	return (len);
+	return (NULL);
+}
+
+static void			initialize(wchar_t **str, char *nformat, int *i, int *count)
+{
+	*i = 0;
+	*count = 0;
+	*str = ft_wcharnew(*str, 1);
+	*str = changing_malloc(str, nformat, i, *count);
+}
+
+int					ft_printf_second_part(char **nformat, va_list ap)
+{
+	wchar_t *str;
+	int		i;
+	int		count;
+	wchar_t *arg;
+
+	initialize(&str, *nformat, &i, &count);
+	while ((*nformat)[i])
+	{
+		str = changing_malloc(&str, *nformat, &i, count);
+		if ((*nformat)[i] == '%')
+		{
+			++i;
+			if ((*nformat)[i] == 'N')
+				arg = ft_itoa_signed_ll(wstr_len(str), 10);
+			else
+				arg = starting_test(*nformat, ap, &i, &count);
+			if ((*nformat)[i] == 'n')
+				n_func(ap, str, &arg);
+			else
+				str = add_arg(&str, &arg, (*nformat)[i], &count);
+			if ((*nformat)[i])
+				++i;
+		}
+	}
+	return (ending(&str, nformat, count, ap));
+}
+
+int					ft_printf(const char *format, ...)
+{
+	va_list ap;
+	char	*nformat;
+
+	if (!format)
+		return (-1);
+	nformat = get_color(format);
+	va_start(ap, format);
+	return (ft_printf_second_part(&nformat, ap));
 }
